@@ -1,1 +1,26 @@
+# Ignorowanie folderu .terraform (gdzie są przechowywane pliki zależności Terraform)
 .terraform/
+
+# Ignorowanie plików cache Terraform
+*.tfstate
+*.tfstate.*
+
+# Ignorowanie plików logów
+*.log
+
+# Ignorowanie plików konfiguracyjnych użytkownika
+*.tfvars
+*.terraformrc
+terraform.rc
+
+# Ignorowanie folderów związanych z IDE (np. VS Code, IntelliJ, itp.)
+.vscode/
+.idea/
+
+# Ignorowanie plików związanych z systemem operacyjnym
+.DS_Store
+Thumbs.db
+
+# Ignorowanie dużych plików binarnych (np. .exe, .dll, itp.)
+*.exe
+*.dll
