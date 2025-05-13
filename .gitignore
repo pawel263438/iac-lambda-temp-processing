@@ -4,7 +4,7 @@
 # Ignorowanie plików cache Terraform
 *.tfstate
 *.tfstate.*
-
+.terraform.lock.hcl
 # Ignorowanie plików logów
 *.log
 
