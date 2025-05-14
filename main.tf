@@ -1,10 +1,10 @@
 provider "aws" {
-  region = "us-east-1"  
+  region = var.region  
 }
 
 
 data "aws_iam_role" "existing_lambda_role" {
-  name = "LabRole"  # <- tu podaj nazwę roli, którą masz w AWS
+  name = "LabRole"  
 }
 
 
@@ -61,11 +61,11 @@ module "step_function" {
 
 terraform {
   backend "s3" {
-    bucket         = "statebucketawsacademy"   # Zamień na swoją nazwę bucketu S3
+    bucket         = "statebucketawsacademy"   
     key            = "state/terraform.tfstate"
-    region         = "us-east-1"          # Wybierz odpowiednią strefę
+    region         = "us-east-1"         
     encrypt        = true
-    dynamodb_table = "terraform-locks"    # Tablica DynamoDB do blokowania stanu
+    dynamodb_table = "terraform-locks"    
     acl            = "bucket-owner-full-control"
   }
 }
