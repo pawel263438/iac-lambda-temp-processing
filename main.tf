@@ -48,6 +48,27 @@ module "average_lambda_function" {
   reserved_concurrent_executions = 5
 }
 
+
+module "secrets_lambda_function" {
+  source = "./modules/lambda_function"
+
+  function_name = "secretsLambdaFunction"
+  role_arn      = data.aws_iam_role.existing_lambda_role.arn
+  handler       = "lambda_function.lambda_handler"
+  runtime       = "python3.8"
+  filename      = "secrets_lambda.zip"
+  source_dir    = "${path.root}/lambda_code_secrets"
+
+  environment_variables = {
+    S3_BUCKET = "danepobranee"
+    S3_KEY    = "sensor-1k.csv"
+  }
+
+  memory_size                   = 256
+  timeout                       = 20
+  reserved_concurrent_executions = 1
+}
+
 module "step_function" {
   source = "./modules/step_function"
 
@@ -57,6 +78,11 @@ module "step_function" {
   average_lambda_arn = module.average_lambda_function.lambda_function_arn
 }
 
+
+module "ssm_secret" {
+  source      = "./modules/ssm_parameter"
+  db_password = var.db_password
+}
 
 
 terraform {

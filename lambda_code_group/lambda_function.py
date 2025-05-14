@@ -10,8 +10,8 @@ logger.setLevel(logging.INFO)
 
 s3_client = boto3.client('s3')
 
-S3_BUCKET = os.environ['S3BUCKET']
-S3_KEY = os.environ['S3KEY']
+S3_BUCKET = os.environ['S3_BUCKET']
+S3_KEY = os.environ['S3_KEY']
 
 def lambda_handler(event, context):
     source = event.get("source", "s3")  # domyślnie "s3"
