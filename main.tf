@@ -48,6 +48,14 @@ module "average_lambda_function" {
   reserved_concurrent_executions = 5
 }
 
+module "step_function" {
+  source = "./modules/step_function"
+
+  name               = "MyTwoStepMachine"
+  role_arn           = data.aws_iam_role.existing_lambda_role.arn
+  group_lambda_arn   = module.group_lambda_function.lambda_function_arn
+  average_lambda_arn = module.average_lambda_function.lambda_function_arn
+}
 
 
 
